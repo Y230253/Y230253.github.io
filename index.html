@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc; /* light mode background */
+            color: #1e293b; /* light mode text */
+        }
+        .dark body {
+            background-color: #0f172a; /* dark mode background */
+            color: #e2e8f0; /* dark mode text */
+        }
+        .card {
+            background-color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dark .card {
+            background-color: #1e293b;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .dark .card:hover {
+             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ===== ヘッダー ===== -->
+    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-slate-800 dark:text-white">MyPortfolio</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#profile" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">自己紹介</a>
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">作品</a>
+                <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">スキル</a>
+                <a href="#other" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">その他</a>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <i class="fas fa-sun text-slate-600 dark:hidden"></i>
+                <i class="fas fa-moon text-slate-300 hidden dark:inline"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== メインコンテンツ ===== -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- ヒーローセクション -->
+        <section class="text-center py-16">
+            <!-- 何も表示しない -->
+             
+        </section>
+
+        <!-- 自己紹介セクション -->
+        <section id="profile" class="mb-24 scroll-mt-20">
+            <h2 class="text-4xl font-bold text-center mb-12">自己紹介 <span class="text-indigo-500">Profile</span></h2>
+            <div id="profile-container" class="max-w-4xl mx-auto p-8 rounded-xl shadow-lg card">
+                
+            </div>
+        </section>
+
+        <!-- 作品セクション -->
+        <section id="projects" class="mb-24 scroll-mt-20">
+            <h2 class="text-4xl font-bold text-center mb-12">作品 <span class="text-indigo-500">Projects</span></h2>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+            </div>
+        </section>
+        
+        <!-- スキルセクション -->
+        <section id="skills" class="mb-24 scroll-mt-20">
+            <h2 class="text-4xl font-bold text-center mb-12">スキル <span class="text-indigo-500">Skills</span></h2>
+            <div id="skills-container" class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center">
+                 
+            </div>
+        </section>
+
+        <!-- その他セクション -->
+        <section id="other" class="mb-24 scroll-mt-20">
+            <h2 class="text-4xl font-bold text-center mb-12">その他 <span class="text-indigo-500">Other</span></h2>
+            <div id="other-container" class="max-w-4xl mx-auto space-y-8">
+                
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== フッター ===== -->
+    <footer class="bg-slate-100 dark:bg-slate-800 py-6">
+        <div class="container mx-auto px-6 text-center text-slate-500 dark:text-slate-400">
+            <p>&copy; <span id="footer-year"></span> <span id="footer-name"></span>. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===== YouTubeモーダル ===== -->
+    <div id="youtube-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
+        <div class="relative w-full max-w-3xl">
+            <button id="modal-close" class="absolute -top-10 right-0 text-white text-3xl">&times;</button>
+            <div id="youtube-player-container" class="aspect-w-16 aspect-h-9">
+                <!-- YouTube Iframeがここに挿入されます -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 作品詳細モーダル ===== -->
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden z-50">
+        <div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl max-w-2xl w-full mx-4 p-8 relative max-h-[90vh] overflow-y-auto">
+            <button id="project-modal-close" class="absolute top-4 right-4 text-2xl text-slate-500 dark:text-slate-300 hover:text-indigo-500">&times;</button>
+            <div id="project-modal-content"></div>
+        </div>
+    </div>
+
+
+
+    <script type="module">
+
+        const portfolioData = {
+            profile: {
+                name: "浅野 勇仁",
+                university: "龍谷大学 先端理工学部",
+                bio: "興味を持った技術には果敢に挑戦し、UnityやBlenderを用いたゲーム開発から動画編集まで幅広く経験を積んできました。多角的な視点と実践的なスキルを活かし、チーム開発に貢献します。",
+                avatarUrl: "https://media.discordapp.net/attachments/1384814507238494238/1390668738583334942/IMG_20250704_212050.jpg?ex=68b2ecb0&is=68b19b30&hm=2578fd1d26115c847cd79efc2c027cb7dd8e659485e95bc99c52908895e6edfb&=&format=webp&width=948&height=886"
+            },
+            projects: [
+                {
+                    title: "KANSAI UP!",
+                    description: "KC3 HACKに参加した際に作成した、関西の名所を巡りながらアスレチックを楽しむ3Dゲームです UnityとBlenderを使用しています。主に3Dオブジェクトの作成、キャラ動作の実装、PV動画編集を担当しました。",
+                    image: "https://i9.ytimg.com/vi_webp/cEGDkOx8yRY/mq1.webp?sqp=CLzwxsUG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGF0gZSg0MA8=&rs=AOn4CLAUnAji8JWqcvPwkAeAqdw8XmTgAw",
+                    githubUrl: "https://github.com/Y230253/KC3_2025/",
+                    youtubeUrl: "https://youtu.be/cEGDkOx8yRY" 
+                },
+                {
+                    title: "Dragon Valley 竜の棲む谷",
+                    description: "部内ハッカソンで作成した、Unityで開発した3Dランゲームです。主に3Dモデリング、アニメーション、PV動画編集を担当しました。",
+                    image: "https://media.discordapp.net/attachments/710270629298962532/1410999013452288061/2025-08-29_233432.png?ex=68b30ebb&is=68b1bd3b&hm=4d23aa919445afc9dd60df1af1335d3a9cf94d0d179889e41f68b25e4279065f&=&format=webp&quality=lossless",
+                        githubUrl: "https://github.com/Y230253/DragonValley",
+                        youtubeUrl: "https://youtu.be/V3p6LL0YKDM"
+                },
+                {
+                    title: "ShareChat",
+                    description: "JavaScriptおよびVue.jsを学習したのでアウトプットとして作成したチャットアプリです。Firebaseを使用してリアルタイムチャット機能を実装しました。GoogleCloudとFirebaseの学習も兼ねています。（現在はサイト閉鎖中）",
+                    image: "https://media.discordapp.net/attachments/1234162926877802507/1355411758038388917/image.png?ex=68b28a91&is=68b13911&hm=a09f90f4376156ff78340994da3ed0ea6b22039c26d17269c8378a04d446f821&=&format=webp&quality=lossless&width=1872&height=869",
+                    githubUrl: "https://github.com/Y230253/ShareChat",
+                    youtubeUrl: null
+                },
+                {
+                    title: "龍谷大学キャンパスナビゲーションアプリ",
+                    description: "現在進行中のプロジェクトです。デジタル2D-3D構内マップを作成し、龍谷大学で迷える人々を0に!!主に3Dモデリング、シェーダー作成、NavMeshを使用した経路作成などを担当しています。",
+                    image: "https://media.discordapp.net/attachments/1337334689496825883/1386015378634965054/image.png?ex=68b279a9&is=68b12829&hm=45ac05192699501dc1f59f516e16549ad64e72e274a73a4215a3843e21b1383e&=&format=webp&quality=lossless",
+                    githubUrl: null,
+                    youtubeUrl: null
+                }
+            ],
+            skills: [
+                { name: "HTML", iconClass: "fab fa-html5 text-orange-500" },
+                { name: "CSS", iconClass: "fab fa-css3-alt text-blue-500" },
+                { name: "JavaScript", iconClass: "fab fa-js-square text-yellow-500" },
+                { name: "Python", iconClass: "fab fa-python text-blue-400" },
+                { name: "Java", iconClass: "fab fa-java text-red-500" },
+                { name: "Git", iconClass: "fab fa-git-alt text-orange-600" },
+                { name: "Unity", iconClass: "fab fa-unity text-blue-500" },
+                { name: "Blender", iconClass: "fab fa-blender text-orange-500" },
+                { name: "C#", iconClass: "fab fa-cuttlefish text-purple-500" }
+            ],
+            other: [
+                {
+                    title: "学歴",
+                    content: "2022年4月 - 現在: 龍谷大学 先端理工学部"
+                },
+                {
+                    title: "活動",
+                    content: "・大学内の部活動Horizonに所属\n・KC3ハッカソンに参加\n・大学で開催されるプロジェクトリサーチに参加中"
+                },
+                {
+                    title: "[補足]プロジェクトリサーチについて",
+                    content: "龍谷大学で開催される約半年間の長期開発プロジェクトです。4月から企画計画を行い6月中旬～9月中旬に開発を行い11月に成果発表を行う。\n各自でチームを組み、アドバイザー教員を交えながら実際の課題解決に取り組み、企画から開発、発表まで一貫して行います。現在は「龍谷大学キャンパスナビゲーションアプリ」の開発に携わっており、Unity・Blender・C#などを使用したアプリケーション開発を行っています。"
+                }
+            ]
+        };
+
+
+        // =================================================================
+        //  UIコンポーネント生成関数
+        // =================================================================
+
+        /**
+         * 自己紹介セクションのHTMLを生成して描画する
+         * @param {object} profile - プロフィールデータ
+         */
+        function renderProfile(profile) {
+            const container = document.getElementById('profile-container');
+            if (!container) return;
+            
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <img src="${profile.avatarUrl}" alt="プロフィール画像" class="w-36 h-36 rounded-full object-cover shadow-md">
+                    <div class="text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-slate-800 dark:text-white">${profile.name}</h3>
+                        <p class="text-lg text-indigo-500 dark:text-indigo-400 mb-2">${profile.university}</p>
+                        <p class="text-slate-600 dark:text-slate-300">${profile.bio}</p>
+                    </div>
+                </div>
+            `;
+            // フッターに名前を設定
+            document.getElementById('footer-name').textContent = profile.name;
+        }
+
+        /**メモ
+         * 作品カードのHTML要素を生成する
+         * @param {object} project - 単一のプロジェクトデータ
+         * @returns {HTMLElement} - 生成されたdiv要素
+         */
+        function createProjectCard(project) {
+            const div = document.createElement('div');
+            div.className = 'card rounded-lg overflow-hidden shadow-lg cursor-pointer';
+            
+            // YouTubeサムネイル自動化
+            let imageUrl = project.image;
+            if (project.youtubeUrl) {
+                const videoId = getYouTubeVideoId(project.youtubeUrl);
+                if (videoId) {
+                    imageUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+                }
+            }
+
+            // リンクボタンのHTMLを生成
+            let linksHTML = '';
+            if (project.githubUrl) {
+                linksHTML += `
+                    <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-block bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-md text-sm font-medium transition">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </a>`;
+            }
+            if (project.youtubeUrl) {
+                const videoId = getYouTubeVideoId(project.youtubeUrl);
+                linksHTML += `
+                    <a href="${project.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition ml-2">
+                        <i class="fab fa-youtube mr-2"></i>YouTube
+                    </a>`;
+            }
+
+            // YouTube埋め込みまたは画像を生成
+            let mediaHTML = '';
+            if (project.youtubeUrl) {
+                const videoId = getYouTubeVideoId(project.youtubeUrl);
+                if (videoId) {
+                    mediaHTML = `
+                        <div class="w-full h-48 relative">
+                            <iframe src="https://www.youtube.com/embed/${videoId}" 
+                                    class="w-full h-full object-cover" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>`;
+                } else {
+                    mediaHTML = `<img src="${imageUrl}" alt="${project.title}" class="w-full h-48 object-cover">`;
+                }
+            } else {
+                mediaHTML = `<img src="${imageUrl}" alt="${project.title}" class="w-full h-48 object-cover">`;
+            }
+
+            // descriptionの見切れ対策: 折りたたみ式
+            div.innerHTML = `
+                ${mediaHTML}
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">${project.title}</h3>
+                    <div class="mb-4">
+                        <p class="text-slate-600 dark:text-slate-300 project-desc" style="max-height:5.5em; overflow:hidden; position:relative;">${project.description}</p>
+                        <button class="desc-toggle text-indigo-500 text-sm mt-1 underline">もっと見る</button>
+                    </div>
+                    <div class="flex items-center">
+                        ${linksHTML}
+                    </div>
+                </div>
+            `;
+            // 折りたたみ機能
+            setTimeout(() => {
+                const desc = div.querySelector('.project-desc');
+                const btn = div.querySelector('.desc-toggle');
+                if (desc && btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (desc.style.maxHeight === 'none') {
+                            desc.style.maxHeight = '5.5em';
+                            btn.textContent = 'もっと見る';
+                        } else {
+                            desc.style.maxHeight = 'none';
+                            btn.textContent = '閉じる';
+                        }
+                    });
+                }
+            }, 0);
+            // 作品詳細モーダル表示
+            div.addEventListener('click', (e) => {
+                // 「もっと見る」ボタンやiframe内のクリックは除外
+                if (e.target.classList.contains('desc-toggle') || e.target.tagName === 'IFRAME') return;
+                showProjectModal(project, imageUrl);
+            });
+            return div;
+        }
+
+        // 作品詳細モーダル表示関数
+        function showProjectModal(project, imageUrl) {
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('project-modal-content');
+            const closeBtn = document.getElementById('project-modal-close');
+            let linksHTML = '';
+            if (project.githubUrl) {
+                linksHTML += `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-block bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-md text-sm font-medium transition mr-2"><i class="fab fa-github mr-2"></i>GitHub</a>`;
+            }
+            if (project.youtubeUrl) {
+                linksHTML += `<a href="${project.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition"><i class="fab fa-youtube mr-2"></i>YouTube</a>`;
+            }
+
+            // モーダル内でもYouTube埋め込みまたは画像を表示
+            let modalMediaHTML = '';
+            if (project.youtubeUrl) {
+                const videoId = getYouTubeVideoId(project.youtubeUrl);
+                if (videoId) {
+                    modalMediaHTML = `
+                        <div class="w-full h-64 relative mb-4">
+                            <iframe src="https://www.youtube.com/embed/${videoId}" 
+                                    class="w-full h-full rounded" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>`;
+                } else {
+                    modalMediaHTML = `<img src="${imageUrl}" alt="${project.title}" class="w-full h-48 object-cover rounded mb-4">`;
+                }
+            } else {
+                modalMediaHTML = `<img src="${imageUrl}" alt="${project.title}" class="w-full h-48 object-cover rounded mb-4">`;
+            }
+
+            content.innerHTML = `
+                ${modalMediaHTML}
+                <h3 class="text-2xl font-bold mb-2 text-slate-800 dark:text-white">${project.title}</h3>
+                <p class="text-slate-600 dark:text-slate-300 mb-4">${project.description}</p>
+                <div class="flex items-center">${linksHTML}</div>
+            `;
+            modal.classList.remove('hidden');
+            closeBtn.onclick = () => {
+                modal.classList.add('hidden');
+            };
+            // モーダル外クリックで閉じる
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.classList.add('hidden');
+            };
+        }
+
+        /**メモ
+         * 全ての作品を描画する
+         * @param {Array<object>} projects - プロジェクトデータの配列
+         */
+        function renderProjects(projects) {
+            const container = document.getElementById('projects-container');
+            if (!container) return;
+            container.innerHTML = '';
+            projects.forEach(project => {
+                const card = createProjectCard(project);
+                container.appendChild(card);
+            });
+        }
+
+        /**メモ
+         * スキルアイコンを描画する
+         * @param {Array<object>} skills - スキルデータの配列
+         */
+        function renderSkills(skills) {
+            const container = document.getElementById('skills-container');
+            if (!container) return;
+            skills.forEach(skill => {
+                const div = document.createElement('div');
+                div.className = 'flex flex-col items-center p-4 rounded-lg card';
+                div.innerHTML = `
+                    <i class="${skill.iconClass} text-5xl mb-2"></i>
+                    <span class="font-medium text-slate-700 dark:text-slate-200">${skill.name}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        /**メモ
+         * その他セクションを描画する
+         * @param {Array<object>} others - その他データの配列
+         */
+        function renderOther(others) {
+            const container = document.getElementById('other-container');
+            if (!container) return;
+            others.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'p-6 rounded-lg card shadow-lg';
+                // 改行文字を<br>タグに変換
+                const contentHTML = item.content.replace(/\n/g, '<br>');
+                div.innerHTML = `
+                    <h3 class="text-2xl font-bold mb-2 text-slate-800 dark:text-white">${item.title}</h3>
+                    <p class="text-slate-600 dark:text-slate-300 whitespace-pre-line">${item.content.replace(/\n/g, '<br>')}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+
+        /**メモ
+         * YouTubeのURLからビデオIDを抽出する
+         * @param {string} url - YouTubeのURL
+         * @returns {string|null} - ビデオID or null
+         */
+        function getYouTubeVideoId(url) {
+            if (!url) return null;
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        /**メモ
+         * YouTubeモーダルのセットアップ
+         */
+        function setupYoutubeModal() {
+            const modal = document.getElementById('youtube-modal');
+            const closeBtn = document.getElementById('modal-close');
+            const playerContainer = document.getElementById('youtube-player-container');
+            
+            document.querySelectorAll('.youtube-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const videoId = button.dataset.videoId;
+                    if (videoId) {
+                        playerContainer.innerHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                        modal.classList.remove('hidden');
+                    }
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                playerContainer.innerHTML = '';
+            };
+            
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        }
+        
+        /**
+         * ダークモード/ライトモードの切り替え
+         */
+        function setupThemeToggle() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            // 初期テーマを設定
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                // class 'dark' があるかチェック
+                const isDark = document.documentElement.classList.toggle('dark');
+                // ローカルストレージに保存
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+        }
+
+        /**
+         * ページ初期化関数
+         */
+        function initializePage() {
+            // フッターの年を自動更新
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+            
+            // 各セクションの描画
+            renderProfile(portfolioData.profile);
+            renderProjects(portfolioData.projects);
+            renderSkills(portfolioData.skills);
+            renderOther(portfolioData.other);
+            
+            // イベントリスナーの設定
+            setupYoutubeModal();
+            setupThemeToggle();
+            setupProjectModal();
+        }
+
+        /**
+         * 作品詳細モーダルの初期化
+         */
+        function setupProjectModal() {
+            const modal = document.getElementById('project-modal');
+            const closeBtn = document.getElementById('project-modal-close');
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                });
+            }
+            
+            // モーダル外クリックで閉じる
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+        }
+
+        // DOMの読み込みが完了したら初期化関数を実行
+        document.addEventListener('DOMContentLoaded', initializePage);
+
+    </script>
+</body>
+</html>
