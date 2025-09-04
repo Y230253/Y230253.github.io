@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {}
+            },
+            plugins: [
+                // Typography plugin for prose classes
+            ]
+        }
+    </script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><!--マークダウン用ライブラリ-->
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +26,12 @@
     <style>
         body {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            background-color: #f8fafc; /* light mode background */
-            color: #1e293b; /* light mode text */
+            background-color: #f8fafc; /* 通常モード */
+            color: #1e293b; /* 通常モードのテキスト */
         }
         .dark body {
-            background-color: #0f172a; /* dark mode background */
-            color: #e2e8f0; /* dark mode text */
+            background-color: #0f172a; /* ダークモードの背景 */
+            color: #e2e8f0; /* ダークモードのテキスト */
         }
         .card {
             background-color: #ffffff;
@@ -35,6 +46,77 @@
         }
         .dark .card:hover {
              box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Markdown styling */
+        .prose h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-top: 1.5em;
+            margin-bottom: 0.75em;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.25em;
+        }
+        
+        .dark .prose h2 {
+            color: #e2e8f0;
+            border-bottom-color: #475569;
+        }
+        
+        .prose h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin-top: 1.25em;
+            margin-bottom: 0.5em;
+            color: #374151;
+        }
+        
+        .dark .prose h3 {
+            color: #d1d5db;
+        }
+        
+        .prose ul {
+            margin: 1em 0;
+            padding-left: 1.5em;
+        }
+        
+        .prose li {
+            margin: 0.5em 0;
+        }
+        
+        .prose strong {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .dark .prose strong {
+            color: #f3f4f6;
+        }
+        
+        .prose blockquote {
+            border-left: 4px solid #6366f1;
+            margin: 1.5em 0;
+            padding-left: 1em;
+            background-color: #f8fafc;
+            padding: 1em;
+            border-radius: 0.5em;
+        }
+        
+        .dark .prose blockquote {
+            background-color: #1e293b;
+            border-left-color: #818cf8;
+        }
+        
+        .prose code {
+            background-color: #f1f5f9;
+            padding: 0.125em 0.25em;
+            border-radius: 0.25em;
+            font-size: 0.875em;
+        }
+        
+        .dark .prose code {
+            background-color: #334155;
         }
     </style>
 </head>
@@ -140,28 +222,167 @@
                 {
                     title: "KANSAI UP!",
                     description: "KC3 HACKに参加した際に作成した、関西の名所を巡りながらアスレチックを楽しむ3Dゲームです UnityとBlenderを使用しています。主に3Dオブジェクトの作成、キャラ動作の実装、PV動画編集を担当しました。",
-                    image: "https://i9.ytimg.com/vi_webp/cEGDkOx8yRY/mq1.webp?sqp=CLzwxsUG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGF0gZSg0MA8=&rs=AOn4CLAUnAji8JWqcvPwkAeAqdw8XmTgAw",
+                    detailedDescription: `## 開発概要
+- **役割**: 3Dモデラー / ゲームプログラマー
+- **開発期間**: 2週間（アイデアソン1週間、開発1週間）
+- **チーム規模**: 3名
+- **使用技術**: Unity (C#), Blender
+
+## 担当業務
+- **3Dアセット制作**: ゲームのコンセプトに基づき、関西の名所をモチーフとした3Dオブジェクト（約20点）のモデリング、テクスチャリングを担当。
+- **キャラクター制御**: プレイヤーの没入感を高めるため、移動やジャンプ等の基本的な挙動に加え、SEやエフェクトによるフィードバックを実装。
+- **プロモーションビデオ制作**: Blenderのレンダリング機能と外部編集ソフトを用い、ゲームの魅力を伝えるためのPVを企画から撮影、編集まで一貫して担当。
+
+## 技術的ハイライト
+- **物理演算**: Unityの物理エンジンを応用し、アスレチックゲームとしての爽快感を追求したキャラクター挙動を実装。
+- **リアルタイムAPI連携**: ChatGPT APIと連携し、ゲーム内の名所に関する説明文を動的に生成する機能を実装（※現在APIキーは停止中）。
+- **アセット制作パイプライン**: Blenderで制作した3Dモデルを、Unityへ効率的にインポートしゲーム内で利用するまでの一連のワークフローを構築。
+
+## 工夫した点
+- **学習と体験のデザイン**: プレイヤーが楽しみながら関西の名所を知れるよう、アスレチックの難易度曲線とオブジェクトの配置を意識したコースを設計しました。
+- **没入感を高めるUI/UX**: ゲームの世界観に集中できるよう、没入感を阻害しないUIデザインを工夫しました。
+- **短期間での貢献**: 全体で約40点配置されているアセットのうち、**半数にあたる約20点を1週間のスプリントで制作**し、プロジェクトのビジュアル面のクオリティ向上に貢献しました。`,
+                    image: "images/KANSAIUP_Making.png",
+                    images: [
+                        "images/KANSAIUP_1.png",
+                        "images/KANSAIUP_Making.png",
+                        "images/KansaiUP_Title.png",
+                        "images/KANSAIUPMaking2.png"
+                    ],
                     githubUrl: "https://github.com/Y230253/KC3_2025/",
                     youtubeUrl: "https://youtu.be/cEGDkOx8yRY" 
                 },
                 {
                     title: "Dragon Valley 竜の棲む谷",
                     description: "部内ハッカソンで作成した、Unityで開発した3Dランゲームです。主に3Dモデリング、アニメーション、PV動画編集を担当しました。",
+                    detailedDescription: `## プロジェクト概要
+部内ハッカソンで制作した3Dエンドレスランナーゲームです。ドラゴンと一緒に神秘的な谷を駆け抜けるファンタジー世界観を表現しました。
+
+## 開発概要
+- **開発期間**: 1週間
+- **チーム規模**: 4名  
+- **開発環境**: Unity(C#)、Blender
+
+## 担当箇所
+- **3Dモデリング**: プレイヤーが駆け抜ける、複数パターンの地形（直線、コーナー）や岩、アイテムなどの環境アセット全般
+- **アニメーション制作**: ドラゴンの通常時の飛行モーション、及びプレイヤーを威嚇する攻撃モーション
+- **テクスチャ作成**: ドラゴンのモデルに対し、UV展開からノーマルマップ・ラフネスマップ等を用いたPBRテクスチャリングを行い、リアルな質感を表現
+- **タイトル画面のドラゴンの挙動**: タイトル画面でのドラゴンの動きをアニメーションとスクリプトを用いて、プレイヤーの興味を引く演出を行いました。
+- **プロモーション動画制作**: ゲームの魅力を伝えるための映像撮影、BGM選定、編集作業全般
+
+## 技術的なポイント
+- **重み付けを用いたプロシージャル地形生成**: StageGenerator.csにおいて、WeightedPrefabクラスを実装し、直線やカーブ、障害物シーケンスといった**各ステージ部品の出現確率を重み付けで制御**しました。これにより、単調なランダム生成ではなく、ゲームの難易度や展開をある程度デザインできる、柔軟性の高いステージ生成システムを構築しています。
+
+- **無限スクロールとオブジェクト管理**: プレイヤーの前方にforwardCount分のステージを常に生成し、後方のbackwardCount分を越えたものは削除する機能を実装しました。これにより、**無限に続くステージを、パフォーマンスの低下を招くことなく実現**しています。
+
+- **動的な分岐パスシステム**: 分岐路では、プレイヤーが進行可能な全てのルートを一時的に生成します。そして、プレイヤーがPlayerController.csのHandleBranchingメソッドを通じて方向を確定させた後、**CommitDirectionメソッドが選択されなかったルートを破棄する**という動的なシステムを構築しました。これにより、自然なゲーム体験と効率的なリソース管理を両立させています。
+
+- **プレイヤーのミスに反応する追従AI**: 追跡してくるドラゴンは、ChaserController.cs内で管理されるプレイヤーのミス回数に応じて、プレイヤーとの距離を動的に変化させます。ミスをすると距離を詰め、プレッシャーを与えることで、**単なる追跡者ではなく、ゲームの緊張感を高めるためのインタラクティブな要素**として機能します。
+
+## こだわりポイント
+ドラゴンの翼の動きにリアリティを持たせるため、**実際に家で飼っている文鳥の飛行映像を参考に**アニメーションを制作し、生命感あふれる動きを追求しました。また、ドラゴンをよりリアルに見せるための**テクスチャリング**にも注力し、ザラッとした鱗の質感などを細かく表現しています。
+
+ゲームプレイの面では、ただ走り続けるだけでなく、**地形シーケンス（lOnlyLaneRoadPrefabsなど）を導入**することで、「特定のレーンだけが安全」といった戦略的な場面を作り出し、プレイヤーを飽きさせない工夫を凝らしました。
+
+さらに、**プロモーション動画**では、ゲームの魅力を最大限に引き出すため、BGM選定から編集まで一貫して担当し、視覚的にも聴覚的にも楽しめる内容に仕上げました。`,
+
                     image: "https://media.discordapp.net/attachments/710270629298962532/1410999013452288061/2025-08-29_233432.png?ex=68b30ebb&is=68b1bd3b&hm=4d23aa919445afc9dd60df1af1335d3a9cf94d0d179889e41f68b25e4279065f&=&format=webp&quality=lossless",
-                        githubUrl: "https://github.com/Y230253/DragonValley",
-                        youtubeUrl: "https://youtu.be/V3p6LL0YKDM"
+                    images: [
+                        "images/DragonMaking.png",
+                        "images/DragonValley_Miss.jpg",
+                        "images/スクリーンショット 2025-08-29 233432.png"
+                    ],
+                    githubUrl: "https://github.com/Y230253/DragonValley",
+                    youtubeUrl: "https://youtu.be/V3p6LL0YKDM"
                 },
                 {
                     title: "ShareChat",
                     description: "JavaScriptおよびVue.jsを学習したのでアウトプットとして作成したチャットアプリです。Firebaseを使用してリアルタイムチャット機能を実装しました。GoogleCloudとFirebaseの学習も兼ねています。（現在はサイト閉鎖中）",
-                    image: "https://media.discordapp.net/attachments/1234162926877802507/1355411758038388917/image.png?ex=68b28a91&is=68b13911&hm=a09f90f4376156ff78340994da3ed0ea6b22039c26d17269c8378a04d446f821&=&format=webp&quality=lossless&width=1872&height=869",
+                    detailedDescription: `## プロジェクト概要
+Vue.js 3、Firebaseといったモダンな技術スタックの学習アウトプットとして開発した、リアルタイムチャットアプリケーションです。「既存のSNSでは共有しにくい日常も、安心して共有できるプラットフォーム」をコンセプトに、企画から設計、開発、インフラ構築まで一貫して個人で担当しました。
+
+## 開発概要
+- **開発期間**: 2ヶ月
+- **開発形式**: 個人プロジェクト
+- **技術スタック**:
+  - **フロントエンド**: Vue.js 3 (Composition API), Vite
+  - **バックエンド**: Firebase (Authentication, Firestore, Cloud Storage), Node.js (Express)
+  - **インフラ**: Google Cloud Platform
+
+## 実装機能
+- **リアルタイムメッセージング**: Firebase Realtime Listenerを利用し、遅延のないメッセージ送受信を実現。
+- **堅牢なユーザー認証**: Firebase Authenticationによる、セキュアなサインアップ・ログイン機能。
+- **メディア共有**: Cloud Storage for Firebaseを活用した、画像・動画のアップロード機能。
+- **高度な検索機能**: メッセージの全文検索、および投稿に付与されたタグ(#)による絞り込み検索。
+- **インタラクティブなUI**: 投稿されたメディアのモーダル拡大表示や、いいね・ブックマーク機能。
+
+## 技術的ハイライト
+### フロントエンド (Vue.js 3)
+- **Composition API中心の設計**: setup関数内でロジックをカプセル化し、関心事（いいね機能、表示状態監視など）ごとに処理をまとめることで、見通しが良く再利用性の高いコンポーネントを構築しました。
+- **リアクティブなグローバル状態管理**: Vue.js 3標準のリアクティビティシステム（ref, reactive）のみで、軽量かつ高機能な認証状態管理ストア（authStore.js）を実装。外部ライブラリに依存せず、トークンの有効期限切れを検知して自動でログイン画面へ遷移させるなどの高度な制御も実現しました。
+- **パフォーマンス最適化**: Viteの高速なHMR（ホットモジュールリプレイスメント）を活用し開発効率を向上させると共に、Intersection Observer APIを用いた画像の遅延読み込みを実装し、初期表示速度を高速化しました。
+
+### バックエンド & インフラ (Firebase / GCP)
+- **サーバーレスアーキテクチャ**: Firebaseの各種サービスを全面的に採用することで、サーバーのプロビジョニングや管理を不要にし、開発者がアプリケーションロジックに集中できる環境を構築しました。
+- **Firestoreのリアルタイム同期**: データベースの変更をクライアント側で即座に検知するonSnapshotリスナーを活用し、ポーリングなしでリアルタイム性の高いチャット機能を実現しました。
+- **セキュアなAPI設計**: フロントエンドとFirebase間の通信は、Firebase SDKが提供するセキュアな接続を利用。重要なAPIエンドポイントには、Firebase Authenticationと連携した認証ミドルウェアを導入し、不正なアクセスを防止しました。
+
+## こだわりと学習成果
+このプロジェクトを通して、単に機能を実装するだけでなく、**保守性・再利用性の高いコードとは何か**を常に意識しました。特にVue 3のComposition APIは、ロジックの分割と再結合を容易にし、複雑な状態を持つコンポーネントでもクリーンに保つ強力なツールであることを学びました。
+
+また、個人開発だからこそ、フロントエンドからバックエンド、インフラまで一気通貫で担当することで、**アプリケーション全体を見通す広い視野**と、それぞれの技術領域における実践的なスキルを習得できました。現在はサイトを閉鎖していますが、この開発経験は、今後のどのようなプロジェクトにおいても必ず活かせると確信しています。
+`,
+                    image: "images/スクリーンショット 2025-03-29 141957.png",
+                    images: [
+                        "images/スクリーンショット 2025-03-29 141957.png",
+                        "images/スクリーンショット 2025-09-04 211602.png",
+                        "images/スクリーンショット 2025-09-04 211629.png"
+                    ],
                     githubUrl: "https://github.com/Y230253/ShareChat",
                     youtubeUrl: null
                 },
                 {
                     title: "龍谷大学キャンパスナビゲーションアプリ",
-                    description: "現在進行中のプロジェクトです。デジタル2D-3D構内マップを作成し、龍谷大学で迷える人々を0に!!主に3Dモデリング、シェーダー作成、NavMeshを使用した経路作成などを担当しています。",
+                    description: "現在進行中のプロジェクトです。 龍谷大学 2D/3D デジタルキャンパスマップ新入生や来訪者が抱える「キャンパス内で迷ってしまう」という課題を解決するために、GPSと連動した2D/3DマップWebアプリケーションを開発しています。私は主にUnityとBlenderを担当し、正確な3D建物のモデリングから、建物内での快適な経路探索を実現するためのデータ構造設計、視認性を向上させるためのシェーダー開発まで、3D空間におけるユーザー体験の根幹を担いました。",
+                    detailedDescription: `## プロジェクト概要
+[現在制作中のプロジェクトです。🚧]
+新入生やオープンキャンパスの来訪者が広大で複雑なキャンパスで迷うことなく、円滑に目的地へたどり着けるように支援することを目的とした、Webベースの2D/3Dデジタル構内マップアプリケーションです。屋外ではGPSを利用した2Dマップで建物を案内し、建物に近づくとシームレスに3Dマップへ移行。複雑な建物内部の教室や施設まで、立体的に経路を案内します。
+
+---
+
+## 担当役割：3Dモデラー / Unityデベロッパー
+私はこのプロジェクトで、ユーザーが最も長く触れることになる**3D空間の設計と実装**を担当しました。主な担当業務は以下の通りです。
+
+- **高精度な3Dアセット制作**:
+  - Blenderを使用し、瀬田キャンパスの主要な建物をローポリでモデリング。WebGL環境でのパフォーマンスを意識しつつ、現地の写真や大学提供の地図を元に制作しました。
+  - モデルの正確性を担保するため、**実際に現地調査を行い、建物の壁の高さや通路の幅をメジャーで計測**。設計図と現実の齟齬をなくし、信頼性の高いナビゲーションの土台を築きました。
+
+- **屋内ナビゲーションシステムの基盤構築**:
+  - UnityのNavMeshを利用した経路探索の精度を高めるため、**全教室・施設の入口にScriptableObjectを用いたアンカーポイントを約150ヶ所設置**。これにより、「3-101教室」といった具体的な部屋名での目的地設定と、そこまでの正確なルート表示を実現しました。
+  - アンカーデータには部屋ID、表示名、建物ID、階層情報などを含め、拡張性の高いデータ構造を設計しました。
+
+- **ユーザー体験を向上させるシェーダー開発**:
+  - 3Dマップ内でカメラが壁に近づいた際や、特定の角度から見た際に、**壁やオブジェクトが半透明に透けるカスタムシェーダーを作成**。これにより、建物内部の構造や経路が遮蔽されることなく、ユーザーが直感的に現在地とルートを把握できるUI/UXを実現しました。
+
+---
+
+## 技術的ハイライト
+- **ReactとUnity (WebGL) の連携**: フロントエンドはReactで構築し、GPSで取得した緯度経度情報をUnityへ送信。Unity側でそのデータをワールド座標に変換し、2Dマップと3Dマップ上でユーザーの現在地をリアルタイムに表示します。
+
+- **ScriptableObjectによる柔軟なデータ管理**: 教室や施設（トイレ、給水器など）の位置情報をScriptableObjectとしてデータ化。これにより、エンジニアでないメンバーでも容易に地点情報の追加・修正が可能となり、メンテナンス性に優れたシステムを構築しました。
+
+- **パフォーマンスを意識した3D空間設計**:
+  - **実地調査**に基づく正確なローポリモデリングに加え、Unityの**静的バッチング**や**オクルージョンカリング**といった最適化手法を計画的に導入。
+  - WebGLの上限メモリ（4GB）を考慮し、目標使用量を1.5GB以内に抑えることで、様々なデバイスで快適に動作するアプリケーションを目指しました。`,
                     image: "https://media.discordapp.net/attachments/1337334689496825883/1386015378634965054/image.png?ex=68b279a9&is=68b12829&hm=45ac05192699501dc1f59f516e16549ad64e72e274a73a4215a3843e21b1383e&=&format=webp&quality=lossless",
+                    images: [
+                    "images/ryukokuMapPR.png",
+                    "images/MapBuildingAncker.png",
+                    "images/スクリーンショット 2025-07-19 232253.png",
+                    "images/スクリーンショット 2025-07-20 234821.png",
+                    "images/スクリーンショット 2025-08-13 222003.png",
+                    "images/スクリーンショット 2025-09-04 222118.png"
+                ],
                     githubUrl: null,
                     youtubeUrl: null
                 }
@@ -330,31 +551,106 @@
 
             // モーダル内でもYouTube埋め込みまたは画像を表示
             let modalMediaHTML = '';
+            let currentIndex = 0;
+            const mediaItems = [];
+            
+            // YouTube動画を最初に追加（存在する場合）
             if (project.youtubeUrl) {
                 const videoId = getYouTubeVideoId(project.youtubeUrl);
                 if (videoId) {
-                    modalMediaHTML = `
-                        <div class="w-full h-64 relative mb-4">
-                            <iframe src="https://www.youtube.com/embed/${videoId}" 
-                                    class="w-full h-full rounded" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>`;
-                } else {
-                    modalMediaHTML = `<img src="${imageUrl}" alt="${project.title}" class="w-full h-48 object-cover rounded mb-4">`;
+                    mediaItems.push({
+                        type: 'youtube',
+                        content: `
+                            <div class="w-full h-64 relative">
+                                <iframe src="https://www.youtube.com/embed/${videoId}" 
+                                        class="w-full h-full rounded" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>`
+                    });
                 }
+            }
+            
+            // 追加の画像を配列に追加
+            if (project.images && project.images.length > 0) {
+                project.images.forEach(img => {
+                    mediaItems.push({
+                        type: 'image',
+                        content: `<img src="${img}" alt="${project.title}" class="w-full h-64 object-cover rounded">`
+                    });
+                });
             } else {
-                modalMediaHTML = `<img src="${imageUrl}" alt="${project.title}" class="w-full h-48 object-cover rounded mb-4">`;
+                // imagesがない場合は元の画像を使用
+                mediaItems.push({
+                    type: 'image',
+                    content: `<img src="${imageUrl}" alt="${project.title}" class="w-full h-64 object-cover rounded">`
+                });
+            }
+
+            // スライダーのHTMLを生成
+            if (mediaItems.length > 1) {
+                modalMediaHTML = `
+                    <div class="relative mb-4">
+                        <div id="media-container" class="w-full h-64">
+                            ${mediaItems[currentIndex].content}
+                        </div>
+                        <button id="prev-btn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button id="next-btn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                            ${mediaItems.map((_, i) => `<div class="w-2 h-2 rounded-full ${i === currentIndex ? 'bg-white' : 'bg-white bg-opacity-50'}" data-index="${i}"></div>`).join('')}
+                        </div>
+                    </div>`;
+            } else {
+                modalMediaHTML = `<div class="mb-4">${mediaItems[0].content}</div>`;
             }
 
             content.innerHTML = `
                 ${modalMediaHTML}
                 <h3 class="text-2xl font-bold mb-2 text-slate-800 dark:text-white">${project.title}</h3>
-                <p class="text-slate-600 dark:text-slate-300 mb-4">${project.description}</p>
+                <div class="text-slate-600 dark:text-slate-300 mb-4 prose prose-slate dark:prose-invert max-w-none">${marked.parse(project.detailedDescription || project.description)}</div>
                 <div class="flex items-center">${linksHTML}</div>
             `;
+            
+            // スライダー機能の設定
+            if (mediaItems.length > 1) {
+                const mediaContainer = document.getElementById('media-container');
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                const indicators = content.querySelectorAll('[data-index]');
+                
+                function updateMedia(index) {
+                    currentIndex = index;
+                    mediaContainer.innerHTML = mediaItems[currentIndex].content;
+                    indicators.forEach((indicator, i) => {
+                        indicator.className = `w-2 h-2 rounded-full ${i === currentIndex ? 'bg-white' : 'bg-white bg-opacity-50'}`;
+                    });
+                }
+                
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const newIndex = currentIndex > 0 ? currentIndex - 1 : mediaItems.length - 1;
+                    updateMedia(newIndex);
+                });
+                
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const newIndex = currentIndex < mediaItems.length - 1 ? currentIndex + 1 : 0;
+                    updateMedia(newIndex);
+                });
+                
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        updateMedia(index);
+                    });
+                });
+            }
             modal.classList.remove('hidden');
             closeBtn.onclick = () => {
                 modal.classList.add('hidden');
