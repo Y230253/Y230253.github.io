@@ -234,12 +234,12 @@ UnityとBlenderの学習アウトプットとして、企画、3Dアセット制
         { name: "HTML", iconClass: "fab fa-html5 text-orange-500" },
         { name: "CSS", iconClass: "fab fa-css3-alt text-blue-500" },
         { name: "JavaScript", iconClass: "fab fa-js-square text-yellow-500" },
-        { name: "Python", iconClass: "fab fa-python text-blue-400" },
+        { name: "Python", iconClass: "images/icons8-python-48.png" },
         { name: "Java", iconClass: "fab fa-java text-red-500" },
         { name: "Git", iconClass: "fab fa-git-alt text-orange-600" },
         { name: "Unity", iconClass: "fab fa-unity text-blue-500" },
-        { name: "Blender", iconClass: "fab fa-blender text-orange-500" },
-        { name: "C#", iconClass: "fab fa-cuttlefish text-purple-500" }
+        { name: "Blender", iconClass: "images/icons8-blender-3d-48.png" },
+        { name: "C#", iconClass: "images/icons8-c-48.png" }
     ],
     other: [
         {
@@ -559,8 +559,14 @@ function renderSkills(skills) {
     skills.forEach(skill => {
         const div = document.createElement('div');
         div.className = 'flex flex-col items-center p-4 rounded-lg card';
+        
+        // アイコン画像を用意したアイコンは画像として表示、その他はFont Awesomeアイコンとして表示
+        const iconHTML = skill.iconClass.startsWith('images/') 
+            ? `<img src="${skill.iconClass}" alt="${skill.name}" class="w-12 h-12 mb-2 object-contain">`
+            : `<i class="${skill.iconClass} text-5xl mb-2"></i>`;
+        
         div.innerHTML = `
-            <i class="${skill.iconClass} text-5xl mb-2"></i>
+            ${iconHTML}
             <span class="font-medium text-slate-700 dark:text-slate-200">${skill.name}</span>
         `;
         container.appendChild(div);
