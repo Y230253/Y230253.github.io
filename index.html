@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {}
             },
@@ -198,14 +199,14 @@
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-slate-800 dark:text-white">MyPortfolio</a>
             <div class="hidden md:flex items-center space-x-6">
-                <a href="#profile" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">自己紹介</a>
-                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">作品</a>
-                <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">スキル</a>
-                <a href="#other" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">その他</a>
+                <a href="#profile" class="text-slate-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">自己紹介</a>
+                <a href="#projects" class="text-slate-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">作品</a>
+                <a href="#skills" class="text-slate-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">スキル</a>
+                <a href="#other" class="text-slate-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">その他</a>
             </div>
             <button id="theme-toggle" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <i class="fas fa-sun text-slate-600 dark:hidden"></i>
-                <i class="fas fa-moon text-slate-300 hidden dark:inline"></i>
+                <i class="fas fa-moon text-white hidden dark:inline"></i>
             </button>
         </nav>
     </header>
@@ -255,7 +256,7 @@
 
     <!-- ===== フッター ===== -->
     <footer class="bg-slate-100 dark:bg-slate-800 py-6">
-        <div class="container mx-auto px-6 text-center text-slate-500 dark:text-slate-400">
+        <div class="container mx-auto px-6 text-center text-slate-500 dark:text-white">
             <p>&copy; <span id="footer-year"></span> <span id="footer-name"></span>. All Rights Reserved.</p>
         </div>
     </footer>
@@ -273,7 +274,7 @@
     <!-- ===== 作品詳細モーダル ===== -->
     <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden z-50">
         <div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl max-w-4xl w-full mx-4 p-8 relative max-h-[90vh] overflow-y-auto">
-            <button id="project-modal-close" class="absolute top-4 right-4 text-2xl text-slate-500 dark:text-slate-300 hover:text-indigo-500">&times;</button>
+            <button id="project-modal-close" class="absolute top-4 right-4 text-2xl text-slate-500 dark:text-white hover:text-indigo-500">&times;</button>
             <div id="project-modal-content"></div>
         </div>
     </div>
