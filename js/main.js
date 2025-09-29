@@ -545,6 +545,8 @@ function renderProjects(projects) {
         const card = createProjectCard(project);
         container.appendChild(card);
     });
+    // プロジェクトカード描画後にアニメーション設定
+    setTimeout(() => addProjectCardsAnimation(), 0);
 }
 
 /**
@@ -563,6 +565,8 @@ function renderSkills(skills) {
         `;
         container.appendChild(div);
     });
+    // スキルアイコン描画後にアニメーション設定
+    setTimeout(() => addSkillsAnimation(), 0);
 }
 
 /**
@@ -583,6 +587,8 @@ function renderOther(others) {
         `;
         container.appendChild(div);
     });
+    // その他セクション描画後にアニメーション設定
+    setTimeout(() => addOtherSectionAnimation(), 0);
 }
 
 /**
@@ -596,6 +602,75 @@ function lockScroll() {
 function unlockScroll() {
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
+}
+
+/**
+ * スクロールアニメーション機能（Intersection Observer API使用）
+ */
+function setupScrollAnimations() {
+    // Intersection Observer の設定
+    const observerOptions = {
+        root: null, // ビューポートを基準
+        rootMargin: '0px 0px -50px 0px', // 50px手前で発火
+        threshold: 0.1 // 10%見えたら発火
+    };
+
+    // Observer インスタンスを作成
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 要素が画面に入ったらアニメーションクラスを追加
+                entry.target.classList.add('animate');
+                // 一度アニメーションしたら監視を停止（再度発火しないように）
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // data-animate属性を持つ全要素をObserverに登録
+    const elementsToAnimate = document.querySelectorAll('[data-animate]');
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+/**
+ * プロジェクトカードにスタガードアニメーションを追加
+ */
+function addProjectCardsAnimation() {
+    const projectCards = document.querySelectorAll('#projects-container .card');
+    projectCards.forEach((card, index) => {
+        // 各カードに遅延クラスとアニメーションクラスを追加
+        const delayClass = `stagger-delay-${Math.min(index + 1, 6)}`;
+        card.classList.add('fade-in-up', delayClass);
+        card.setAttribute('data-animate', '');
+    });
+}
+
+/**
+ * スキルアイコンにスタガードアニメーションを追加
+ */
+function addSkillsAnimation() {
+    const skillItems = document.querySelectorAll('#skills-container > div');
+    skillItems.forEach((item, index) => {
+        // 各スキルアイテムに遅延クラスとアニメーションクラスを追加
+        const delayClass = `stagger-delay-${Math.min(index + 1, 6)}`;
+        item.classList.add('fade-in-up', delayClass);
+        item.setAttribute('data-animate', '');
+    });
+}
+
+/**
+ * その他セクションにアニメーションを追加
+ */
+function addOtherSectionAnimation() {
+    const otherItems = document.querySelectorAll('#other-container > div');
+    otherItems.forEach((item, index) => {
+        // 各アイテムに遅延クラスとアニメーションクラスを追加
+        const delayClass = `stagger-delay-${Math.min(index + 1, 3)}`;
+        item.classList.add('fade-in-up', delayClass);
+        item.setAttribute('data-animate', '');
+    });
 }
 
 /**
@@ -828,6 +903,9 @@ function initializePage() {
     
     // パーティクルの初期化
     initializeParticles();
+    
+    // スクロールアニメーションの初期化
+    setTimeout(() => setupScrollAnimations(), 100);
 }
 
 /**
