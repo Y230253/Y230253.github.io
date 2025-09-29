@@ -135,6 +135,57 @@
         .dark #particles-js {
             background-color: #000000; /* ダークモード: 黒背景 */
         }
+        
+        /* スクロールアニメーション */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        
+        .fade-in.animate {
+            opacity: 1;
+        }
+        
+        /* スタガード（順次）アニメーション */
+        .stagger-delay-1 { transition-delay: 0.1s; }
+        .stagger-delay-2 { transition-delay: 0.2s; }
+        .stagger-delay-3 { transition-delay: 0.3s; }
+        .stagger-delay-4 { transition-delay: 0.4s; }
+        .stagger-delay-5 { transition-delay: 0.5s; }
+        .stagger-delay-6 { transition-delay: 0.6s; }
     </style>
 </head>
 <body class="antialiased">
@@ -169,32 +220,32 @@
         </section>
 
         <!-- 自己紹介セクション -->
-        <section id="profile" class="mb-24 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center mb-12">自己紹介 <span class="text-indigo-500">Profile</span></h2>
-            <div id="profile-container" class="max-w-4xl mx-auto p-8 rounded-xl shadow-lg card">
+        <section id="profile" class="mb-24 scroll-mt-20 fade-in-up" data-animate>
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in-up" data-animate>自己紹介 <span class="text-indigo-500">Profile</span></h2>
+            <div id="profile-container" class="max-w-4xl mx-auto p-8 rounded-xl shadow-lg card fade-in-up stagger-delay-2" data-animate>
                 
             </div>
         </section>
 
         <!-- 作品セクション -->
-        <section id="projects" class="mb-24 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center mb-12">作品 <span class="text-indigo-500">Projects</span></h2>
+        <section id="projects" class="mb-24 scroll-mt-20 fade-in-up" data-animate>
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in-up" data-animate>作品 <span class="text-indigo-500">Projects</span></h2>
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
             </div>
         </section>
         
         <!-- スキルセクション -->
-        <section id="skills" class="mb-24 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center mb-12">スキル <span class="text-indigo-500">Skills</span></h2>
+        <section id="skills" class="mb-24 scroll-mt-20 fade-in-up" data-animate>
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in-up" data-animate>スキル <span class="text-indigo-500">Skills</span></h2>
             <div id="skills-container" class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center">
                  
             </div>
         </section>
 
         <!-- その他セクション -->
-        <section id="other" class="mb-24 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center mb-12">その他 <span class="text-indigo-500">Other</span></h2>
+        <section id="other" class="mb-24 scroll-mt-20 fade-in-up" data-animate>
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in-up" data-animate>その他 <span class="text-indigo-500">Other</span></h2>
             <div id="other-container" class="max-w-4xl mx-auto space-y-8">
                 
             </div>
