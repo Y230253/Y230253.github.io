@@ -516,13 +516,20 @@ function showProjectModal(project, imageUrl) {
             });
         });
     }
+    
+    // モーダル表示時にスクロールをロック
+    lockScroll();
     modal.classList.remove('hidden');
-    closeBtn.onclick = () => {
+    
+    const closeModal = () => {
         modal.classList.add('hidden');
+        unlockScroll(); // モーダルを閉じるときにスクロールロックを解除
     };
+    
+    closeBtn.onclick = closeModal;
     // モーダル外クリックで閉じる
     modal.onclick = (e) => {
-        if (e.target === modal) modal.classList.add('hidden');
+        if (e.target === modal) closeModal();
     };
 }
 
@@ -579,6 +586,19 @@ function renderOther(others) {
 }
 
 /**
+ * スクロールロック機能
+ */
+function lockScroll() {
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+}
+
+function unlockScroll() {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+}
+
+/**
  * YouTubeのURLからビデオIDを抽出する
  * @param {string} url - YouTubeのURL
  * @returns {string|null} - ビデオID or null
@@ -603,6 +623,7 @@ function setupYoutubeModal() {
             const videoId = button.dataset.videoId;
             if (videoId) {
                 playerContainer.innerHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                lockScroll(); // YouTubeモーダル表示時にスクロールをロック
                 modal.classList.remove('hidden');
             }
         });
@@ -611,6 +632,7 @@ function setupYoutubeModal() {
     const closeModal = () => {
         modal.classList.add('hidden');
         playerContainer.innerHTML = '';
+        unlockScroll(); // YouTubeモーダルを閉じるときにスクロールロックを解除
     };
     
     closeBtn.addEventListener('click', closeModal);
@@ -802,6 +824,7 @@ function initializePage() {
     setupYoutubeModal();
     setupThemeToggle();
     setupProjectModal();
+    setupEscapeKeyHandler();
     
     // パーティクルの初期化
     initializeParticles();
@@ -814,16 +837,42 @@ function setupProjectModal() {
     const modal = document.getElementById('project-modal');
     const closeBtn = document.getElementById('project-modal-close');
     
+    const closeModal = () => {
+        modal.classList.add('hidden');
+        unlockScroll(); // モーダルを閉じるときにスクロールロックを解除
+    };
+    
     if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
+        closeBtn.addEventListener('click', closeModal);
     }
     
     // モーダル外クリックで閉じる
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            modal.classList.add('hidden');
+            closeModal();
+        }
+    });
+}
+
+/**
+ * ESCキーでモーダルを閉じる機能
+ */
+function setupEscapeKeyHandler() {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const projectModal = document.getElementById('project-modal');
+            const youtubeModal = document.getElementById('youtube-modal');
+            
+            if (!projectModal.classList.contains('hidden')) {
+                projectModal.classList.add('hidden');
+                unlockScroll();
+            }
+            
+            if (!youtubeModal.classList.contains('hidden')) {
+                youtubeModal.classList.add('hidden');
+                document.getElementById('youtube-player-container').innerHTML = '';
+                unlockScroll();
+            }
         }
     });
 }
