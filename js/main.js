@@ -275,7 +275,7 @@ function renderProfile(profile) {
             <div class="text-center md:text-left">
                 <h3 class="text-3xl font-bold text-slate-800 dark:text-white">${profile.name}</h3>
                 <p class="text-lg text-indigo-500 dark:text-indigo-400 mb-2">${profile.university}</p>
-                <p class="text-slate-600 dark:text-slate-300">${profile.bio}</p>
+                <p class="text-slate-600 dark:text-white">${profile.bio}</p>
             </div>
         </div>
     `;
@@ -353,7 +353,7 @@ function createProjectCard(project) {
         <div class="p-6">
             <h3 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">${project.title}</h3>
             <div class="mb-4">
-                <p class="text-slate-600 dark:text-slate-300 project-desc" style="max-height:5.5em; overflow:hidden; position:relative;">${project.description}</p>
+                <p class="text-slate-600 dark:text-white project-desc" style="max-height:5.5em; overflow:hidden; position:relative;">${project.description}</p>
                 <button class="desc-toggle text-indigo-500 text-sm mt-1 underline">もっと見る</button>
             </div>
             <div class="flex items-center">
@@ -478,7 +478,7 @@ function showProjectModal(project, imageUrl) {
     content.innerHTML = `
         ${modalMediaHTML}
         <h3 class="text-2xl font-bold mb-2 text-slate-800 dark:text-white">${project.title}</h3>
-        <div class="text-slate-600 dark:text-slate-300 mb-4 prose prose-slate dark:prose-invert max-w-none">${marked.parse(project.detailedDescription || project.description)}</div>
+        <div class="text-slate-600 dark:text-white mb-4 prose prose-slate dark:prose-invert max-w-none">${marked.parse(project.detailedDescription || project.description)}</div>
         <div class="flex items-center">${linksHTML}</div>
     `;
     
@@ -567,7 +567,7 @@ function renderSkills(skills) {
         
         div.innerHTML = `
             ${iconHTML}
-            <span class="font-medium text-slate-700 dark:text-slate-200">${skill.name}</span>
+            <span class="font-medium text-slate-700 dark:text-white">${skill.name}</span>
         `;
         container.appendChild(div);
     });
@@ -589,7 +589,7 @@ function renderOther(others) {
         const contentHTML = item.content.replace(/\n/g, '<br>');
         div.innerHTML = `
             <h3 class="text-2xl font-bold mb-2 text-slate-800 dark:text-white">${item.title}</h3>
-            <p class="text-slate-600 dark:text-slate-300 whitespace-pre-line">${item.content.replace(/\n/g, '<br>')}</p>
+            <p class="text-slate-600 dark:text-white whitespace-pre-line">${item.content.replace(/\n/g, '<br>')}</p>
         `;
         container.appendChild(div);
     });
